@@ -1,19 +1,20 @@
 #include <DHT.h>
 
-#define DHTPIN D4
+#define DHTPIN 2
 #define DHTTYPE DHT11
 
-#define FLAME_PIN D5
-#define LED_PIN D6
-#define BUZZER_PIN D7
+#define FLAME_PIN 3
+#define LED_PIN 4
+#define BUZZER_PIN 5
 
 DHT dht(DHTPIN, DHTTYPE);
 
+// Ambang suhu kebakaran
 float suhuBatas = 30.0;
 
 void setup() {
 
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   pinMode(FLAME_PIN, INPUT);
   pinMode(LED_PIN, OUTPUT);
@@ -24,7 +25,9 @@ void setup() {
 
   dht.begin();
 
-  Serial.println("Sistem Deteksi Kebakaran ESP8266");
+  Serial.println("================================");
+  Serial.println(" SISTEM DETEKSI KEBAKARAN ");
+  Serial.println("================================");
 }
 
 void loop() {
@@ -59,7 +62,7 @@ void loop() {
 
   Serial.println();
 
-  // Sensor api active LOW
+  // Kondisi kebakaran
   if (suhu > suhuBatas && flame == LOW) {
 
     Serial.println(">>> KEBAKARAN TERDETEKSI <<<");
