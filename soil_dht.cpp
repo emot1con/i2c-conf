@@ -11,7 +11,7 @@ DHT dht(DHTPIN, DHTTYPE);
 #define BUZZER_PIN 6  
 
 #define TEMP_THRESHOLD 30.0       
-#define SOIL_THRESHOLD 600       
+#define SOIL_THRESHOLD 400       
 
 void sendSensorData() {
   float h = dht.readHumidity();
