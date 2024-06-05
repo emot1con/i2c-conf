@@ -10,8 +10,8 @@ DHT dht(DHTPIN, DHTTYPE);
 #define LED_PIN 5      
 #define BUZZER_PIN 6  
 
-#define TEMP_THRESHOLD 30.0       // Ambang batas suhu (°C), silakan sesuaikan
-#define SOIL_THRESHOLD 600        // Ambang batas kelembapan tanah, silakan sesuaikan
+#define TEMP_THRESHOLD 30.0       
+#define SOIL_THRESHOLD 600       
 
 void sendSensorData() {
   float h = dht.readHumidity();
@@ -33,7 +33,6 @@ void sendSensorData() {
   Serial.print("Soil Moisture: ");
   Serial.println(soilValue);
 
-  // Kontrol LED berdasarkan suhu
   if (t > TEMP_THRESHOLD) { 
     digitalWrite(LED_PIN, HIGH);
     Serial.println("Status LED: ON (Suhu > " + String(TEMP_THRESHOLD) + " *C)");
@@ -42,7 +41,6 @@ void sendSensorData() {
     Serial.println("Status LED: OFF");
   }
 
-  // Kontrol Buzzer berdasarkan kelembapan tanah
   if (soilValue > SOIL_THRESHOLD) { 
     digitalWrite(BUZZER_PIN, HIGH);
     Serial.println("Status Buzzer: ON (Soil Moisture > " + String(SOIL_THRESHOLD) + ")");
