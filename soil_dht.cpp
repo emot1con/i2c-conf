@@ -41,7 +41,7 @@ void sendSensorData() {
     Serial.println("Status LED: OFF");
   }
 
-  if (soilValue > SOIL_THRESHOLD) { 
+  if (soilValue < SOIL_THRESHOLD) { 
     digitalWrite(BUZZER_PIN, HIGH);
     Serial.println("Status Buzzer: ON (Soil Moisture > " + String(SOIL_THRESHOLD) + ")");
   } else {
